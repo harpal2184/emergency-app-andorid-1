@@ -132,7 +132,7 @@ public class MainActivity extends Activity
             intent = new Intent(this, SettingsActivity.class);
         }
         else if (id == R.id.action_about_us){
-            intent = new Intent(this, AboutUsActivity.class);
+            intent = new Intent(this, AboutUs.class);
 
         }
         if(intent != null) {

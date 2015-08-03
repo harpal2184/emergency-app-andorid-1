@@ -25,7 +25,7 @@
                 android:value="com.example.sunnygurnani.multimenu.MainActivity" />
         </activity>
         <activity
-            android:name=".AboutUsActivity"
+            android:name=".AboutUs"
             android:label="@string/title_activity_about_us"
             android:parentActivityName=".MainActivity" >
             <meta-data

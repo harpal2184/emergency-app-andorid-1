@@ -1,12 +1,10 @@
 <resources>
-    <string name="app_name">multimenu</string>
+    <string name="app_name">Emergency App</string>
 
     <string name="title_home">Home</string>
     <string name="title_map">Map</string>
     <string name="title_flash">Flash</string>
     <string name="title_developer_profile">Developer Profile</string>
-
-
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
