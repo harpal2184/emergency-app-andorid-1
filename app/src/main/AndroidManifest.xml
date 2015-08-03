@@ -17,16 +17,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"
+            android:name=".AboutUs"
+            android:label="@string/title_activity_about_us"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.sunnygurnani.multimenu.MainActivity" />
         </activity>
         <activity
-            android:name=".AboutUs"
-            android:label="@string/title_activity_about_us"
+            android:name=".EmergencyContactActivity"
+            android:label="@string/title_activity_emergency_contact"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

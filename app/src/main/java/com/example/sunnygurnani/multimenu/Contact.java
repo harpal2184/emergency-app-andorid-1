@@ -3,7 +3,7 @@ package com.example.sunnygurnani.multimenu;
 /**
  * Created by sunnygurnani on 7/7/15.
  */
-public class Contact1 {
+public class Contact {
 
     public String getFirstName() {
         return firstName;

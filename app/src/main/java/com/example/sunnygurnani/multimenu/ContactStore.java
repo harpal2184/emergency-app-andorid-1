@@ -21,24 +21,24 @@ public class ContactStore {
         readFromFile(activity);
     }
 
-    public Contact1 getContact_1() {
+    public Contact getContact_1() {
         return contact_1;
     }
 
-    public void setContact_1(Contact1 contact_1) {
+    public void setContact_1(Contact contact_1) {
         this.contact_1 = contact_1;
     }
 
-    public Contact1 getContact_2() {
+    public Contact getContact_2() {
         return contact_2;
     }
 
-    public void setContact_2(Contact1 contact_2) {
+    public void setContact_2(Contact contact_2) {
         this.contact_2 = contact_2;
     }
 
-    private Contact1 contact_1;
-    private Contact1 contact_2;
+    private Contact contact_1;
+    private Contact contact_2;
 
     private final String fileName = "ContactsFile";
     public void saveToFile(android.app.Activity activity) throws IOException{
@@ -71,8 +71,8 @@ public class ContactStore {
         }
         catch (IOException e){
 
-            this.contact_1 = new Contact1();
-            this.contact_2 = new Contact1();
+            this.contact_1 = new Contact();
+            this.contact_2 = new Contact();
         }
     }
 }
