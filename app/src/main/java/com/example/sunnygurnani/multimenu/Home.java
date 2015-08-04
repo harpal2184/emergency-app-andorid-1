@@ -1,7 +1,9 @@
 package com.example.sunnygurnani.multimenu;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,7 +17,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
-public class Home extends Fragment  {
+public class Home extends Fragment {
 
     ImageButton help_button;
     Button safe_button;
@@ -25,6 +27,7 @@ public class Home extends Fragment  {
     private OnFragmentInteractionListener mListener;
 
     Contact contact1, contact2;
+
     public static Home newInstance(int sectionNumber) {
         Home fragment = new Home();
         Bundle args = new Bundle();
@@ -42,7 +45,7 @@ public class Home extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         ContactStore contactStore = new ContactStore(getActivity());
         contact1 = contactStore.getContact_1();
@@ -53,26 +56,26 @@ public class Home extends Fragment  {
 
         safe_button = (Button) view.findViewById(R.id.button);
         safe_button.setOnClickListener(onclick);
-                return view;
+        return view;
     }
+
     View.OnClickListener onclick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.imageButton:
                     //if this button clicked it will start the call functionality.
                     if (isTelephonyEnabled()) {
-                        if(contact1.getPhoneNumber()!=null) {
+                        if (contact1.getPhoneNumber() != null) {
                             Intent callintent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + contact1.getPhoneNumber()));
                             startActivity(callintent);
                         }
-                        if(contact2.getPhoneNumber()!=null)
-                        {
+                        if (contact2.getPhoneNumber() != null) {
                             Intent callintent1 = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + contact2.getPhoneNumber()));
                             startActivity(callintent1);
                         }
-                     } else {
+                    } else {
                         Toast.makeText(getActivity(), "Sim card not available", Toast.LENGTH_LONG).show();
                     }
                     //will send messages to the contacts saved.
@@ -80,12 +83,34 @@ public class Home extends Fragment  {
                     break;
                 case R.id.button:
                     sendsms("I am safe now.");
+                    if (contact1.getPhoneNumber() != null)
+                    openAlert(v);
                     break;
             }
 
         }
     };
 
+    private void openAlert(View view) {
+        AlertDialog alertDialog = null;
+
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        alertDialogBuilder.setTitle(getActivity().getTitle());
+        alertDialogBuilder.setMessage("Yor message has been sent.");
+
+        // set positive button: Yes message
+        alertDialogBuilder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int id) {
+
+                dialog.dismiss();
+            }
+        });
+        alertDialog = alertDialogBuilder.create();
+                // show alert
+                alertDialog.show();
+
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -109,10 +134,10 @@ public class Home extends Fragment  {
     // function created for sending messages.
     public void sendsms(String sms) {
         SmsManager smsManager = SmsManager.getDefault();
-        if(contact1.getPhoneNumber()!= null)
-        smsManager.sendTextMessage(contact1.getPhoneNumber(), null, sms, null, null);
-        if(contact2.getPhoneNumber()!=null)
-        smsManager.sendTextMessage(contact2.getPhoneNumber(), null, sms, null, null);
+        if (contact1.getPhoneNumber() != null)
+            smsManager.sendTextMessage(contact1.getPhoneNumber(), null, sms, null, null);
+        if (contact2.getPhoneNumber() != null)
+            smsManager.sendTextMessage(contact2.getPhoneNumber(), null, sms, null, null);
 
     }
 
@@ -121,6 +146,5 @@ public class Home extends Fragment  {
         TelephonyManager tm = (TelephonyManager) getActivity().getSystemService(getActivity().TELEPHONY_SERVICE);
         return tm != null && tm.getSimState() == TelephonyManager.SIM_STATE_READY;
     }
-
 
 }
