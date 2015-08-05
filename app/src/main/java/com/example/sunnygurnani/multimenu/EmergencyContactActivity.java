@@ -195,6 +195,11 @@ public class EmergencyContactActivity extends Activity implements ActionBar.TabL
                 public void onClick(View v) {
                     getContactFromView(mContact);
                     parentActivity.saveContactStore();
+                    //Context.startActivity(Home.class);
+                   // Intent i = new Intent(parentActivity, Home.class);
+                   // startActivity(i);
+                    // redirect the home page
+                    parentActivity.onBackPressed();
                 }
             });
 
